@@ -1,0 +1,40 @@
+<mat-card>
+    <mat-card-title>Agendar Atendimento</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <mat-form-field style="width:100%">
+                <input matInput placeholder="Nome do cliente" formControlName="clientName" required>
+            </mat-form-field>
+
+            <mat-form-field style="width:100%">
+                <mat-select placeholder="Profissional" formControlName="professionalId" required>
+                    <mat-option *ngFor="let p of professionals" [value]="p.id">{{ p.name }} — {{ p.specialty
+                        }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field style="width:100%">
+                <input matInput [matDatepicker]="picker" placeholder="Data" formControlName="date" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field style="width:100%">
+                <input matInput placeholder="Hora (ex: 14:00)" formControlName="time" required>
+            </mat-form-field>
+
+            <mat-form-field style="width:100%">
+                <input matInput placeholder="Observações" formControlName="notes">
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit">Confirmar agendamento</button>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="last">
+    <mat-card-title>Último agendamento (simulado)</mat-card-title>
+    <mat-card-content>
+        <pre>{{ last | json }}</pre>
+    </mat-card-content>
+</mat-card>

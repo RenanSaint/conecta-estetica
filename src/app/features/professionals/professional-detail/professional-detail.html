@@ -1,0 +1,21 @@
+@if (professional) {
+<mat-card>
+    <mat-card-title>{{ professional.name }}</mat-card-title>
+    <mat-card-subtitle>{{ professional.specialty }}</mat-card-subtitle>
+    <mat-card-content>
+        <p>{{ professional.bio }}</p>
+        <p><strong>Faixa de preço:</strong> {{ professional.priceRange }}</p>
+        <p><strong>Avaliação:</strong> {{ professional.rating }}</p>
+
+        <h4>Datas disponíveis</h4>
+        <mat-list>
+            @for (d of professional.availableDates; track professional.id){
+            <mat-list-item >
+                {{ d }}
+                <button mat-button  style="margin-left:auto" [routerLink]="['/appointments']"
+                    [queryParams]="{ professionalId: professional.id, date: d }">Agendar</button>
+            </mat-list-item>}
+        </mat-list>
+    </mat-card-content>
+</mat-card>
+}

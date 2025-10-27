@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+    <span style="cursor:pointer" [routerLink]="['/']">Conecta Estética</span>
+    <span class="spacer" style="flex:1 1 auto"></span>
+    <a mat-button routerLink="/professionals">Profissionais</a>
+    <a mat-button routerLink="/appointments">Agendamentos</a>
+    <a mat-button routerLink="/login" *ngIf="!(auth.user() )">Entrar</a>
+    <button mat-icon-button (click)="logout()" *ngIf="auth.user()">
+        <mat-icon>logout</mat-icon>
+    </button>
+</mat-toolbar>
