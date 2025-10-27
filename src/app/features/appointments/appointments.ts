@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfessionalService } from '../../core/services/professional.service';
 import type { Appointment } from '../../core/models/appointment.model';
+import { MatTimepickerModule } from '@angular/material/timepicker';
 
 @Component({
   selector: 'app-appointments',
@@ -22,6 +23,7 @@ import type { Appointment } from '../../core/models/appointment.model';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
+    MatTimepickerModule,
     MatNativeDateModule,
     MatButtonModule,
     MatSelectModule
@@ -29,7 +31,6 @@ import type { Appointment } from '../../core/models/appointment.model';
   templateUrl: 'appointments.html'
 })
 export class Appointments {
-  private fb = inject(FormBuilder);
   private profSvc = inject(ProfessionalService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -37,12 +38,12 @@ export class Appointments {
   professionals = this.profSvc.professionals();
   last: Appointment | null = null;
 
-  form = this.fb.group({
-    clientName: [''],
-    professionalId: [this.professionIdFromQuery()],
-    date: [this.dateFromQuery() ? new Date(this.dateFromQuery()!) : null],
-    time: [''],
-    notes: ['']
+  form = new FormGroup({
+    clientName: new FormControl(''),
+    professionalId: new FormControl(this.professionIdFromQuery()),
+    date: new FormControl<Date>(this.dateFromQuery() ? new Date(this.dateFromQuery()!) : new Date()),
+    time: new FormControl<Date>(new Date()),
+    notes: new FormControl('')
   });
 
   submit() {
@@ -52,7 +53,7 @@ export class Appointments {
       professionalId: Number(v.professionalId),
       clientName: v.clientName!,
       date: v.date ? new Date(v.date).toISOString().slice(0,10) : '',
-      time: v.time!,
+      time: v.time ? new Date(v.time).toTimeString() : '',
       notes: v.notes!
     };
     // aqui poderíamos chamar um service — por demo guardamos localmente
