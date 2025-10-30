@@ -1,0 +1,15 @@
+:host {
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    width: fit-content;
+}
+
+.login-forms {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 16px;
+}

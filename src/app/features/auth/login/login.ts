@@ -29,4 +29,8 @@ export class Login {
       this.router.navigateByUrl('/');
     }
   }
+
+  forgot() {
+    
+  }
 }

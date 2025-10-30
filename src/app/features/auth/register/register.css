@@ -1,0 +1,16 @@
+:host {
+    display: flex;
+    justify-content: center;
+}
+
+.register-card {
+    width: fit-content;
+}
+
+.register-forms {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 16px;
+    gap: 10px;
+}

@@ -1,17 +1,23 @@
-<mat-card>
-    <mat-card-title>Entrar</mat-card-title>
-    <mat-card-content>
-        <form [formGroup]="form" (ngSubmit)="login()">
-            <mat-form-field style="width:100%">
-                <input matInput placeholder="E-mail" formControlName="email">
+<form [formGroup]="form" (submit)="login()">
+    <mat-card appearance="outlined" class="login-card">
+        <mat-card-header>
+            <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="login-forms">
+            <mat-form-field appearance="outline">
+                <mat-label>E-mail</mat-label>
+                <input matInput type="outline" formControlName="email">
             </mat-form-field>
-            <mat-form-field style="width:100%">
-                <input matInput placeholder="Senha" type="password" formControlName="password">
+            <mat-form-field appearance="outline">
+                <mat-label>Senha</mat-label>
+                <input matInput type="password" formControlName="password">
+                <mat-hint align="end"><a style="cursor: pointer; color:primary; text-decoration: underline;">Esqueci a senha</a></mat-hint>
             </mat-form-field>
-            <button mat-raised-button color="primary" type="submit">Entrar</button>
-        </form>
-    </mat-card-content>
-    <mat-card-actions>
-        <a routerLink="/register">Não tem conta? Cadastre-se</a>
-    </mat-card-actions>
-</mat-card>
+        </mat-card-content>
+        <mat-card-actions class="login-actions" align="end">
+            <button matButton="filled" type="submit">Entrar</button>
+            <button matButton="text" routerLink="/register">Quero me cadastrar</button>
+            <a routerLink="/register"></a>
+        </mat-card-actions>
+    </mat-card>
+</form>
