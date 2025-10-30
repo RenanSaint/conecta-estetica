@@ -1,0 +1,24 @@
+.main-container {
+    height: 100%;
+}
+
+main {
+    padding: 15px;
+}
+
+.sidenav {
+    padding: 15px;
+    width: fit-content;
+}
+
+.sidenav nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.nav-button {
+    width: 100%;
+    justify-content: start;
+}

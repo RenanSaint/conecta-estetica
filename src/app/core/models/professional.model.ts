@@ -5,5 +5,5 @@ export interface Professional {
   bio?: string;
   priceRange?: string;
   rating?: number;
-  availableDates?: string[]; // ISO dates for demo
+  availableDates?: Date[]; // ISO dates for demo
 }

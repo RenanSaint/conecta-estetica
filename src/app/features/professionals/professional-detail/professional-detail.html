@@ -1,7 +1,9 @@
 @if (professional) {
-<mat-card>
-    <mat-card-title>{{ professional.name }}</mat-card-title>
-    <mat-card-subtitle>{{ professional.specialty }}</mat-card-subtitle>
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>{{ professional.name }}</mat-card-title>
+        <mat-card-subtitle>{{ professional.specialty }}</mat-card-subtitle>
+    </mat-card-header>
     <mat-card-content>
         <p>{{ professional.bio }}</p>
         <p><strong>Faixa de preço:</strong> {{ professional.priceRange }}</p>
@@ -9,10 +11,10 @@
 
         <h4>Datas disponíveis</h4>
         <mat-list>
-            @for (d of professional.availableDates; track professional.id){
-            <mat-list-item >
-                {{ d }}
-                <button mat-button  style="margin-left:auto" [routerLink]="['/appointments']"
+            @for (d of professional.availableDates; track d.toString()){
+            <mat-list-item>
+                {{ d.getDate() + "/" + d.getMonth() }}
+                <button mat-button style="margin-left:auto" [routerLink]="['/appointments']"
                     [queryParams]="{ professionalId: professional.id, date: d }">Agendar</button>
             </mat-list-item>}
         </mat-list>

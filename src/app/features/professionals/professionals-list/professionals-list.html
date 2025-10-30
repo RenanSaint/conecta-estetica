@@ -4,19 +4,22 @@
     </mat-form-field>
 
     <div class="grid cols-3">
-        <ng-container *ngFor="let prof of filtered()">
-            <mat-card>
+        @for (prof of filtered(); track prof.id){
+        <mat-card appearance="outlined">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-title>{{ prof.name }}</mat-card-title>
                 <mat-card-subtitle>{{ prof.specialty }}</mat-card-subtitle>
-                <mat-card-content>
-                    <p>{{ prof.bio }}</p>
-                    <p><strong>Preço:</strong> {{ prof.priceRange }}</p>
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-raised-button color="primary" [routerLink]="['/professionals', prof.id]">Ver
-                        perfil</button>
-                </mat-card-actions>
-            </mat-card>
-        </ng-container>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{ prof.bio }}</p>
+                <p><strong>Preço:</strong> {{ prof.priceRange }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button matButton [routerLink]="['/professionals', prof.id]">Ver
+                    perfil</button>
+            </mat-card-actions>
+        </mat-card>
+        }
     </div>
 </section>

@@ -1,6 +1,19 @@
-<div class="app-shell">
-  <app-header></app-header>
-  <main class="main">
-    <router-outlet></router-outlet>
-  </main>
-</div>
+<app-header [appName]="title()" [toggleNavCallback]="toggleNav()" />
+<mat-sidenav-container class="main-container">
+    <mat-sidenav #drawer mode="over" class="sidenav">
+        <nav>
+            @for(route of validRoutes; track route.path){
+            <button class="nav-button" matButton [matButton]="currentRoute() === '/' + route.path ? 'filled': 'text'"
+                routerLink="{{route.path}}">
+                <mat-icon>{{route.icon}}</mat-icon>
+                {{route.label}}
+            </button>
+            }
+        </nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <main>
+            <router-outlet />
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

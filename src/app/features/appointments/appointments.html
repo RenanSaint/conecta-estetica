@@ -1,5 +1,7 @@
-<mat-card>
-    <mat-card-title>Agendar Atendimento</mat-card-title>
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>Agendar Atendimento</mat-card-title>
+    </mat-card-header>
     <mat-card-content>
         <form [formGroup]="form" (ngSubmit)="submit()">
             <mat-form-field style="width:100%">
@@ -22,8 +24,8 @@
             <mat-form-field style="width:100%">
                 <mat-label>Hora</mat-label>
                 <input matInput [matTimepicker]="timepicker" formControlName="time" required>
-                <mat-timepicker-toggle matIconSuffix [for]="timepicker"/>
-                <mat-timepicker #timepicker/>
+                <mat-timepicker-toggle matIconSuffix [for]="timepicker" />
+                <mat-timepicker #timepicker />
             </mat-form-field>
 
             <mat-form-field style="width:100%">

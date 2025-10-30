@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,7 +14,15 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class Header {
   auth = inject(AuthService);
+  appName = input();
+
+  toggleNavCallback = input.required<() => void>();
+
   logout() {
     this.auth.logout();
+  }
+
+  toggleNav () {
+    this.toggleNavCallback()();
   }
 }

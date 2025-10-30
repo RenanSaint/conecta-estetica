@@ -1,10 +1,24 @@
 <mat-toolbar color="primary">
-    <span style="cursor:pointer" [routerLink]="['/']">Conecta Estética</span>
+    <button matIconButton (click)="toggleNav()" class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{appName()}}</span>
     <span class="spacer" style="flex:1 1 auto"></span>
-    <a mat-button routerLink="/professionals">Profissionais</a>
-    <a mat-button routerLink="/appointments">Agendamentos</a>
-    <a mat-button routerLink="/login" *ngIf="!(auth.user() )">Entrar</a>
-    <button mat-icon-button (click)="logout()" *ngIf="auth.user()">
+
+    @if(!auth.user()) {
+
+    <a mat-button routerLink="/login">Entrar</a>
+
+    } @else {
+        <span>{{auth.user()!.name}}</span>
+    <button mat-icon-button style="display: flex;">
+        <mat-icon>account_circle</mat-icon>
+        
+    </button>
+    <button mat-icon-button (click)="logout()">
         <mat-icon>logout</mat-icon>
     </button>
+
+    }
+
 </mat-toolbar>
