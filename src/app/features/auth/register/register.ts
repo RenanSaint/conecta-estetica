@@ -21,9 +21,9 @@ export class Register {
     name: new FormControl('', [Validators.required]),
     surname: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*?[a-zA-Z])(?=.*?[0-9]).{8,16}$/)]),
     confirm: new FormControl('', [Validators.required])
-  });
+  }, { validators: diffPasswordValidator });
 
   register() {
     const { name, email, password } = this.form.value;
@@ -47,4 +47,13 @@ export class Register {
   get confirmPassword() {
     return this.form.get('confirm');
   }
+
+
 }
+
+export const diffPasswordValidator: ValidatorFn = (
+  control: AbstractControl): ValidationErrors | null => {
+  const diff = (control.value.password !== control.value.confirm);
+  return diff ? { diffPassword: true } : null;
+};
+

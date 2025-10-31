@@ -5,39 +5,52 @@
         </mat-card-header>
         <mat-card-content class="register-forms">
             <div style="display: flex; gap: 10px;">
-            <mat-form-field appearance="outline">
-                <mat-label>Nome</mat-label>
-                <input matInput formControlName="name" required>
-                @if (name?.hasError('required') && name?.touched) {
-                    <mat-hint align="start" style="color: rgb(161, 0, 0);">Um nome é necessário.</mat-hint>
-                }
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Sobrenome</mat-label>
-                <input matInput formControlName="surname">
-            </mat-form-field>
-        </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nome</mat-label>
+                    <input matInput formControlName="name" required>
+                    @if (name?.hasError('required') && name?.touched) {
+                    <mat-hint align="start" style="color: rgb(160, 0, 0);">Um nome é necessário.</mat-hint>
+                    }
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Sobrenome</mat-label>
+                    <input matInput formControlName="surname">
+                </mat-form-field>
+            </div>
             <mat-form-field appearance="outline">
                 <mat-label>E-mail</mat-label>
                 <input matInput type="email" formControlName="email" required>
-                @if (email?.hasError('required')) {
-                    <mat-hint align="start">Um email é necessário.</mat-hint>
+
+                @if (email?.hasError('required') && email?.touched) {
+                <mat-hint align="start" style="color: rgb(160, 0, 0);">Um email é necessário.</mat-hint>
+                }@else if (email?.hasError('email') && email?.touched) {
+                <mat-hint align="start" style="color: rgb(160, 0, 0);">Insira um e-mail válido.</mat-hint>
                 }
-                @if (email?.hasError('email')) {
-                    <mat-hint align="start">Insira um e-mail válido.</mat-hint>
-                }
+
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Senha</mat-label>
                 <input matInput type="password" formControlName="password">
+
+                @if (password?.hasError('required') && password?.touched) {
+                <mat-hint align="start" style="color: rgb(160, 0, 0);">Uma senha é necessária.</mat-hint>
+                }@else if (password?.hasError('pattern') && password?.touched) {
+                <mat-hint align="start" style="position: inherit; color: rgb(160, 0, 0);">A senha deve conter entre 8 e 16 caracteres, incluindo números e letras.</mat-hint>
+                }
+
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Confirme a senha</mat-label>
-                <input matInput type="password" formControlName="password">
+                <input matInput type="password" formControlName="confirm">
+
+                @if (form.hasError('diffPassword') && confirmPassword?.touched) {
+                <mat-hint align="start" style="color: rgb(160, 0, 0);">As duas senhas devem ser iguais.</mat-hint>
+                }
+
             </mat-form-field>
         </mat-card-content>
         <mat-card-actions align="end">
-            <button matButton="filled" type="submit" disabled="true">Solicitar Cadastro</button>
+            <button matButton="filled" type="submit" disabled="{{form.invalid}}">Solicitar Cadastro</button>
             <button matButton="text" routerLink="/login">Tenho Conta</button>
         </mat-card-actions>
     </mat-card>

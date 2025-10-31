@@ -37,9 +37,11 @@
     </mat-card-content>
 </mat-card>
 
-<mat-card *ngIf="last">
+@if (last) {
+<mat-card>
     <mat-card-title>Último agendamento (simulado)</mat-card-title>
     <mat-card-content>
         <pre>{{ last | json }}</pre>
     </mat-card-content>
 </mat-card>
+}
