@@ -6,10 +6,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterLink],
+  imports: [ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatRadioModule, RouterLink],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
@@ -22,12 +23,13 @@ export class Register {
     surname: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*?[a-zA-Z])(?=.*?[0-9]).{8,16}$/)]),
-    confirm: new FormControl('', [Validators.required])
+    confirm: new FormControl('', [Validators.required]), 
+    role: new FormControl('')
   }, { validators: diffPasswordValidator });
 
   register() {
     const { name, email, password } = this.form.value;
-    if (this.auth.register(name!, email!, password!)) {
+    if (this.auth.register(name!, email!, password!, false)) {
       this.router.navigateByUrl('/');
     }
   }

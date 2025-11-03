@@ -35,7 +35,8 @@
                 @if (password?.hasError('required') && password?.touched) {
                 <mat-hint align="start" style="color: rgb(160, 0, 0);">Uma senha é necessária.</mat-hint>
                 }@else if (password?.hasError('pattern') && password?.touched) {
-                <mat-hint align="start" style="position: inherit; color: rgb(160, 0, 0);">A senha deve conter entre 8 e 16 caracteres, incluindo números e letras.</mat-hint>
+                <mat-hint align="start" style="position: inherit; color: rgb(160, 0, 0);">A senha deve conter entre 8 e
+                    16 caracteres, incluindo números e letras.</mat-hint>
                 }
 
             </mat-form-field>
@@ -48,6 +49,10 @@
                 }
 
             </mat-form-field>
+            <mat-radio-group formControlName="role" aria-label="Selecione uma opção">
+                <mat-radio-button value="1">Cliente</mat-radio-button>
+                <mat-radio-button value="2">Profissional</mat-radio-button>
+            </mat-radio-group>
         </mat-card-content>
         <mat-card-actions align="end">
             <button matButton="filled" type="submit" disabled="{{form.invalid}}">Solicitar Cadastro</button>
