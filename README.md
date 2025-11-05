@@ -94,7 +94,7 @@ Desenvolver uma aplicação web que:
 
 ### **1. Clonar o repositório**
 ```bash
-git clone https://github.com/renanfsantana/conecta-estetica.git
+git clone https://github.com/RenanSaint/conecta-estetica.git
 cd conecta-estetica
 ```
 
